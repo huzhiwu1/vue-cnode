@@ -22,7 +22,7 @@
           <img :src="item.author.avatar_url" alt="" class="avatar">
         </div>
         <div class="reply_content">
-          <router-link to="#">
+          <router-link :to="{name:'userInfo',params:{loginname:item.author.loginname}}">
             <span>{{item.author.loginname}}</span>
           </router-link>
 

@@ -2,7 +2,7 @@
   <div class="userPage">
     <div class="mainPage">
       <div class="header">
-        <span>主页</span>/
+        <router-link to="/">主页</router-link>/
       </div>
       <div class="main-meta">
           <div class="author">
@@ -92,7 +92,7 @@ export default {
   color:#ccc;
   padding:10px;
 }
-.header>span{
+.header>a{
   color:#80bd01;
 }
 .avatar{

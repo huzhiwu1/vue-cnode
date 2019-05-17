@@ -6,19 +6,19 @@
         <router-link to="/">首页</router-link>
       </li>
       <li>
-        <router-link to="#">新手入门</router-link>
+        <router-link to="/other/getstart">新手入门</router-link>
       </li>
       <li>
-        <router-link to="#">API</router-link>
+        <router-link to="/other/api">API</router-link>
       </li>
       <li>
-        <router-link to="#">关于</router-link>
+        <router-link to="/other/about">关于</router-link>
       </li>
       <li>
-        <router-link to="#">注册</router-link>
+        <router-link to="/other/none">注册</router-link>
       </li>
       <li>
-        <router-link to="#">登录</router-link>
+        <router-link to="/other/none">登录</router-link>
       </li>
     </ul>
 </div>

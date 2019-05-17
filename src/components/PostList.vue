@@ -1,23 +1,23 @@
 <template>
     <div class="postList">
       <ul class="catagory clear-fix">
-        <li class="catagory-active">
-          <router-link to="#">全部</router-link>
+        <li   v-on:click="getTab($event,'all')" :class="{'catagory-active':tab=='all'}">
+          全部
         </li>
-        <li>
-          <router-link to="#">精华</router-link>
+        <li v-on:click="getTab($event,'good')" :class="{'catagory-active':tab=='good'}">
+          精华
         </li>
-        <li>
-          <router-link to="#">分享</router-link>
+        <li v-on:click="getTab($event,'share')" :class="{'catagory-active':tab=='share'}">
+          分享
         </li>
-        <li>
-          <router-link to="#">问答</router-link>
+        <li v-on:click="getTab($event,'ask')" :class="{'catagory-active':tab=='ask'}">
+          问答
         </li>
-        <li>
-          <router-link to="#">招聘</router-link>
+        <li v-on:click="getTab($event,'job')" :class="{'catagory-active':tab=='job'}">
+          招聘
         </li>
-        <li>
-          <router-link to="#">客户端测试</router-link>
+        <li >
+          客户端测试
         </li>
       </ul>
       <ul class="article-list">
@@ -36,26 +36,30 @@
             <span class="shu">/</span>
             <span class="count_of_visits">{{item.visit_count}}</span>
           </span>
-          <label :class="[{top:item.top==true||item.good==true},{normal:item.top==false&&item.good==false}]">{{item | tagFormat}}</label>
+          <span :class="[{top:item.top==true||item.good==true},{normal:item.top==false&&item.good==false}]">{{item | tagFormat}}</span>
           </div>
 
-          <router-link :to="{name:'article',params:{id:item.id}}">
+          <router-link :to="{name:'article',params:{id:item.id,loginname:item.author.loginname}}">
             <span class="title">{{item.title}}</span>
           </router-link>
 
 
         </li>
       </ul>
+      <pagination @change="changePage"/>
     </div>
 
 </template>
 
 <script>
+import Pagination from '@/components/Pagination'
 export default {
   data() {
     return {
       url: " https://cnodejs.org/api/v1/topics",
-      article_list: []
+      article_list: [],
+      tab:'all',
+      page:1
     };
   },
   methods: {
@@ -64,29 +68,52 @@ export default {
       this.$http
         .get(this.url, {
           params: {
-            page: 1,
-            limit: 10
+            page: that.page,
+            limit: 43,
+            tab:that.tab
           }
         })
         .then(res => {
           (that.article_list = res.data.data), console.log(res);
         })
         .catch(err => console.log(err));
+    },
+    getTab(event,tab){
+      console.log(event);
+        if(this.tab==tab){
+          return;
+        }else{
+          this.tab=tab;
+          this.getData();
+        }
+    },
+    changePage(index){
+      console.log('nihao ')
+      this.page=index;
+      this.getData();
     }
   },
 
   beforeMount() {
+    console.log("执行")
     this.getData();
+  },
+  components:{
+    pagination:Pagination
   }
 };
 </script>
 
 <style scoped>
+.postList{
+  margin-top:10px;
+}
 .catagory {
   background-color: #f6f6f6;
   padding: 10px 0;
   border-radius: 3px 3px 0 0;
   font-size: 14px;
+  overflow: hidden;
 }
 .clear-fix::after {
   content: "";
@@ -147,17 +174,18 @@ export default {
 .title:hover{
   text-decoration:underline;
 }
-label {
+span {
+
   padding: 3px;
   font-size: 12px;
   border-radius: 3px;
   margin-right: 5px;
 }
-label.top {
+span.top {
   background-color: #80bd01;
   color: #fff;
 }
-label.normal{
+span.normal{
   background-color:#e5e5e5;
   color:#999;
 }
@@ -192,5 +220,8 @@ label.normal{
 
   }
 
+}
+.catagory>li{
+  cursor:pointer;
 }
 </style>
