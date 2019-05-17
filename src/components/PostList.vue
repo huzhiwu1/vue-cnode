@@ -22,7 +22,7 @@
       </ul>
       <ul class="article-list">
         <li class="article-item" v-for="item of article_list" :key="item.id">
-          <router-link  class="lasttime">
+          <router-link  class="lasttime" to="#">
             <img class="last_visits_img" src="https://avatars0.githubusercontent.com/u/31948594?v=4&s=120" alt="">
             <span class="last_active_time">{{item.last_reply_at | dateFormat}}</span>
           </router-link>
