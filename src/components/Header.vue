@@ -3,7 +3,7 @@
     <img class="logo" src="@/assets/cnodejs_light.svg" alt="">
     <ul class="nav">
       <li>
-        <router-link to="#">首页</router-link>
+        <router-link to="/">首页</router-link>
       </li>
       <li>
         <router-link to="#">新手入门</router-link>

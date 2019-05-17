@@ -22,12 +22,12 @@
       </ul>
       <ul class="article-list">
         <li class="article-item" v-for="item of article_list" :key="item.id">
-          <router-link to="#" class="lasttime">
+          <router-link  class="lasttime">
             <img class="last_visits_img" src="https://avatars0.githubusercontent.com/u/31948594?v=4&s=120" alt="">
             <span class="last_active_time">{{item.last_reply_at | dateFormat}}</span>
           </router-link>
           <div class="pull-left">
-             <router-link to="#">
+             <router-link :to="{name:'userInfo',params:{loginname:item.author.loginname}}">
             <img class="avatar" :src="item.author.avatar_url" alt="">
           </router-link>
 
@@ -39,7 +39,7 @@
           <label :class="[{top:item.top==true||item.good==true},{normal:item.top==false&&item.good==false}]">{{item | tagFormat}}</label>
           </div>
 
-          <router-link :to="'/api/v1/topic/'+item.id">
+          <router-link :to="{name:'article',params:{id:item.id}}">
             <span class="title">{{item.title}}</span>
           </router-link>
 
@@ -143,6 +143,9 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #000;
+}
+.title:hover{
+  text-decoration:underline;
 }
 label {
   padding: 3px;

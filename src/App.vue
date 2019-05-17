@@ -2,7 +2,7 @@
   <div id="app">
     <Header/>
     <div class="main">
-      <Post-list/>
+      <router-view name='main'></router-view>
     </div>
 
   </div>
@@ -11,11 +11,15 @@
 <script>
 import Header from '@/components/Header'
 import PostList from '@/components/PostList'
+import Article from '@/components/Article'
+import UserInfo from '@/components/UserInfo'
 export default {
   name: 'App',
   components:{
     Header,
     PostList,
+    Article,
+    UserInfo
   }
 }
 </script>
