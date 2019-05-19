@@ -38,8 +38,9 @@ export default {
       this.currentPage++;
       if(this.currentPage==this.btnPages[4]){
         this.addLastPage();
-         this.$emit('change',this.currentPage)
+
       }
+      this.$emit('change',this.currentPage)
     },
     thisPage(event,index){
       if(index==this.btnPages[4]){
@@ -89,5 +90,10 @@ export default {
   .activePage{
     background-color:#000;
     color:#fff;
+  }
+  @media (max-width:680px){
+    .btnPage{
+      margin:5px 2px;;
+    }
   }
 </style>
