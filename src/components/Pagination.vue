@@ -31,8 +31,9 @@ export default {
       this.currentPage=this.currentPage==1?1:this.currentPage-1;
       if(this.currentPage==this.btnPages[0]&&this.currentPage!=1){
         this.addFirstPage();
-         this.$emit('change',this.currentPage)
+
       }
+      this.$emit('change',this.currentPage)
     },
     nextPage(){
       this.currentPage++;
